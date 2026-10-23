@@ -1,0 +1,36 @@
+{
+  "schema": [
+    {
+      "name": "@timestamp",
+      "type": "timestamp"
+    },
+    {
+      "name": "severity.text",
+      "type": "string"
+    },
+    {
+      "name": "body",
+      "type": "string"
+    },
+    {
+      "name": "traceId",
+      "type": "string"
+    }
+  ],
+  "datarows": [
+    [
+      "2026-01-15 09:59:50.000000",
+      "ERROR",
+      "synthetic: connection to downstream failed",
+      "000000000000000000000000000000c9"
+    ],
+    [
+      "2026-01-15 09:59:53.000000",
+      "ERROR",
+      "synthetic: connection to downstream failed",
+      "000000000000000000000000000000ca"
+    ]
+  ],
+  "total": 2,
+  "size": 2
+}

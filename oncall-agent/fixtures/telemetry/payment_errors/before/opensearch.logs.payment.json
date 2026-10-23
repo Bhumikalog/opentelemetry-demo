@@ -1,0 +1,36 @@
+{
+  "schema": [
+    {
+      "name": "@timestamp",
+      "type": "timestamp"
+    },
+    {
+      "name": "severity.text",
+      "type": "string"
+    },
+    {
+      "name": "body",
+      "type": "string"
+    },
+    {
+      "name": "traceId",
+      "type": "string"
+    }
+  ],
+  "datarows": [
+    [
+      "2026-01-15 09:59:50.000000",
+      "ERROR",
+      "synthetic: request handling failed",
+      "00000000000000000000000000000065"
+    ],
+    [
+      "2026-01-15 09:59:52.000000",
+      "ERROR",
+      "synthetic: request handling failed",
+      "00000000000000000000000000000066"
+    ]
+  ],
+  "total": 2,
+  "size": 2
+}

@@ -1,0 +1,30 @@
+{
+  "schema": [
+    {
+      "name": "@timestamp",
+      "type": "timestamp"
+    },
+    {
+      "name": "severity.text",
+      "type": "string"
+    },
+    {
+      "name": "body",
+      "type": "string"
+    },
+    {
+      "name": "traceId",
+      "type": "string"
+    }
+  ],
+  "datarows": [
+    [
+      "2026-01-15 09:59:51.000000",
+      "ERROR",
+      "synthetic: upstream returned an error",
+      "000000000000000000000000000000c9"
+    ]
+  ],
+  "total": 1,
+  "size": 1
+}

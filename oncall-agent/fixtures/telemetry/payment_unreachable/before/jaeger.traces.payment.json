@@ -1,0 +1,129 @@
+{
+  "result": {
+    "resourceSpans": [
+      {
+        "resource": {
+          "attributes": [
+            {
+              "key": "service.name",
+              "value": {
+                "stringValue": "frontend"
+              }
+            }
+          ]
+        },
+        "scopeSpans": [
+          {
+            "scope": {
+              "name": "synthetic"
+            },
+            "spans": [
+              {
+                "traceId": "00000000000000000000000000000384",
+                "spanId": "0000000000002329",
+                "parentSpanId": "",
+                "name": "frontend synthetic operation",
+                "kind": "SPAN_KIND_SERVER",
+                "startTimeUnixNano": "1768472040000000000",
+                "endTimeUnixNano": "1768472040020000000",
+                "status": {}
+              },
+              {
+                "traceId": "00000000000000000000000000000385",
+                "spanId": "0000000000002333",
+                "parentSpanId": "",
+                "name": "frontend synthetic operation",
+                "kind": "SPAN_KIND_SERVER",
+                "startTimeUnixNano": "1768472041000000000",
+                "endTimeUnixNano": "1768472041020000000",
+                "status": {}
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "resource": {
+          "attributes": [
+            {
+              "key": "service.name",
+              "value": {
+                "stringValue": "checkout"
+              }
+            }
+          ]
+        },
+        "scopeSpans": [
+          {
+            "scope": {
+              "name": "synthetic"
+            },
+            "spans": [
+              {
+                "traceId": "00000000000000000000000000000384",
+                "spanId": "000000000000232a",
+                "parentSpanId": "0000000000002329",
+                "name": "checkout synthetic operation",
+                "kind": "SPAN_KIND_SERVER",
+                "startTimeUnixNano": "1768472040000000000",
+                "endTimeUnixNano": "1768472040020000000",
+                "status": {}
+              },
+              {
+                "traceId": "00000000000000000000000000000385",
+                "spanId": "0000000000002334",
+                "parentSpanId": "0000000000002333",
+                "name": "checkout synthetic operation",
+                "kind": "SPAN_KIND_SERVER",
+                "startTimeUnixNano": "1768472041000000000",
+                "endTimeUnixNano": "1768472041020000000",
+                "status": {}
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "resource": {
+          "attributes": [
+            {
+              "key": "service.name",
+              "value": {
+                "stringValue": "payment"
+              }
+            }
+          ]
+        },
+        "scopeSpans": [
+          {
+            "scope": {
+              "name": "synthetic"
+            },
+            "spans": [
+              {
+                "traceId": "00000000000000000000000000000384",
+                "spanId": "000000000000232b",
+                "parentSpanId": "000000000000232a",
+                "name": "payment synthetic operation",
+                "kind": "SPAN_KIND_SERVER",
+                "startTimeUnixNano": "1768472040000000000",
+                "endTimeUnixNano": "1768472040020000000",
+                "status": {}
+              },
+              {
+                "traceId": "00000000000000000000000000000385",
+                "spanId": "0000000000002335",
+                "parentSpanId": "0000000000002334",
+                "name": "payment synthetic operation",
+                "kind": "SPAN_KIND_SERVER",
+                "startTimeUnixNano": "1768472041000000000",
+                "endTimeUnixNano": "1768472041020000000",
+                "status": {}
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

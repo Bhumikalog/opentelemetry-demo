@@ -1,0 +1,7 @@
+{
+  "synthetic": true,
+  "based_on": "hand-written, invented values; not recorded from any real system",
+  "expected_missing": [
+    "error_logs"
+  ]
+}

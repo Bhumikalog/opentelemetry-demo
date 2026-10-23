@@ -1,0 +1,68 @@
+{
+  "result": {
+    "resourceSpans": [
+      {
+        "resource": {
+          "attributes": [
+            {
+              "key": "service.name",
+              "value": {
+                "stringValue": "frontend"
+              }
+            }
+          ]
+        },
+        "scopeSpans": [
+          {
+            "scope": {
+              "name": "synthetic"
+            },
+            "spans": [
+              {
+                "traceId": "000000000000000000000000000003b6",
+                "spanId": "000000000000251d",
+                "parentSpanId": "",
+                "name": "frontend synthetic operation",
+                "kind": "SPAN_KIND_SERVER",
+                "startTimeUnixNano": "1768472090000000000",
+                "endTimeUnixNano": "1768472090020000000",
+                "status": {}
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "resource": {
+          "attributes": [
+            {
+              "key": "service.name",
+              "value": {
+                "stringValue": "cart"
+              }
+            }
+          ]
+        },
+        "scopeSpans": [
+          {
+            "scope": {
+              "name": "synthetic"
+            },
+            "spans": [
+              {
+                "traceId": "000000000000000000000000000003b6",
+                "spanId": "000000000000251e",
+                "parentSpanId": "000000000000251d",
+                "name": "cart synthetic operation",
+                "kind": "SPAN_KIND_SERVER",
+                "startTimeUnixNano": "1768472090000000000",
+                "endTimeUnixNano": "1768472090020000000",
+                "status": {}
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

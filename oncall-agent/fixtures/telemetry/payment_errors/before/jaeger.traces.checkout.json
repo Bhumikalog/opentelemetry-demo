@@ -1,0 +1,246 @@
+{
+  "result": {
+    "resourceSpans": [
+      {
+        "resource": {
+          "attributes": [
+            {
+              "key": "service.name",
+              "value": {
+                "stringValue": "frontend"
+              }
+            }
+          ]
+        },
+        "scopeSpans": [
+          {
+            "scope": {
+              "name": "synthetic"
+            },
+            "spans": [
+              {
+                "traceId": "00000000000000000000000000000065",
+                "spanId": "00000000000003f3",
+                "parentSpanId": "",
+                "name": "frontend synthetic operation",
+                "kind": "SPAN_KIND_SERVER",
+                "startTimeUnixNano": "1768471241000000000",
+                "endTimeUnixNano": "1768471241020000000",
+                "status": {
+                  "code": "STATUS_CODE_ERROR",
+                  "message": "synthetic: downstream call failed"
+                }
+              },
+              {
+                "traceId": "00000000000000000000000000000066",
+                "spanId": "00000000000003fd",
+                "parentSpanId": "",
+                "name": "frontend synthetic operation",
+                "kind": "SPAN_KIND_SERVER",
+                "startTimeUnixNano": "1768471242000000000",
+                "endTimeUnixNano": "1768471242020000000",
+                "status": {
+                  "code": "STATUS_CODE_ERROR",
+                  "message": "synthetic: downstream call failed"
+                }
+              },
+              {
+                "traceId": "00000000000000000000000000000067",
+                "spanId": "0000000000000407",
+                "parentSpanId": "",
+                "name": "frontend synthetic operation",
+                "kind": "SPAN_KIND_SERVER",
+                "startTimeUnixNano": "1768471243000000000",
+                "endTimeUnixNano": "1768471243020000000",
+                "status": {
+                  "code": "STATUS_CODE_ERROR",
+                  "message": "synthetic: downstream call failed"
+                }
+              },
+              {
+                "traceId": "00000000000000000000000000000384",
+                "spanId": "0000000000002329",
+                "parentSpanId": "",
+                "name": "frontend synthetic operation",
+                "kind": "SPAN_KIND_SERVER",
+                "startTimeUnixNano": "1768472040000000000",
+                "endTimeUnixNano": "1768472040020000000",
+                "status": {}
+              },
+              {
+                "traceId": "00000000000000000000000000000385",
+                "spanId": "0000000000002333",
+                "parentSpanId": "",
+                "name": "frontend synthetic operation",
+                "kind": "SPAN_KIND_SERVER",
+                "startTimeUnixNano": "1768472041000000000",
+                "endTimeUnixNano": "1768472041020000000",
+                "status": {}
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "resource": {
+          "attributes": [
+            {
+              "key": "service.name",
+              "value": {
+                "stringValue": "checkout"
+              }
+            }
+          ]
+        },
+        "scopeSpans": [
+          {
+            "scope": {
+              "name": "synthetic"
+            },
+            "spans": [
+              {
+                "traceId": "00000000000000000000000000000065",
+                "spanId": "00000000000003f4",
+                "parentSpanId": "00000000000003f3",
+                "name": "checkout synthetic operation",
+                "kind": "SPAN_KIND_SERVER",
+                "startTimeUnixNano": "1768471241000000000",
+                "endTimeUnixNano": "1768471241020000000",
+                "status": {
+                  "code": "STATUS_CODE_ERROR",
+                  "message": "synthetic: downstream call failed"
+                }
+              },
+              {
+                "traceId": "00000000000000000000000000000066",
+                "spanId": "00000000000003fe",
+                "parentSpanId": "00000000000003fd",
+                "name": "checkout synthetic operation",
+                "kind": "SPAN_KIND_SERVER",
+                "startTimeUnixNano": "1768471242000000000",
+                "endTimeUnixNano": "1768471242020000000",
+                "status": {
+                  "code": "STATUS_CODE_ERROR",
+                  "message": "synthetic: downstream call failed"
+                }
+              },
+              {
+                "traceId": "00000000000000000000000000000067",
+                "spanId": "0000000000000408",
+                "parentSpanId": "0000000000000407",
+                "name": "checkout synthetic operation",
+                "kind": "SPAN_KIND_SERVER",
+                "startTimeUnixNano": "1768471243000000000",
+                "endTimeUnixNano": "1768471243020000000",
+                "status": {
+                  "code": "STATUS_CODE_ERROR",
+                  "message": "synthetic: downstream call failed"
+                }
+              },
+              {
+                "traceId": "00000000000000000000000000000384",
+                "spanId": "000000000000232a",
+                "parentSpanId": "0000000000002329",
+                "name": "checkout synthetic operation",
+                "kind": "SPAN_KIND_SERVER",
+                "startTimeUnixNano": "1768472040000000000",
+                "endTimeUnixNano": "1768472040020000000",
+                "status": {}
+              },
+              {
+                "traceId": "00000000000000000000000000000385",
+                "spanId": "0000000000002334",
+                "parentSpanId": "0000000000002333",
+                "name": "checkout synthetic operation",
+                "kind": "SPAN_KIND_SERVER",
+                "startTimeUnixNano": "1768472041000000000",
+                "endTimeUnixNano": "1768472041020000000",
+                "status": {}
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "resource": {
+          "attributes": [
+            {
+              "key": "service.name",
+              "value": {
+                "stringValue": "payment"
+              }
+            }
+          ]
+        },
+        "scopeSpans": [
+          {
+            "scope": {
+              "name": "synthetic"
+            },
+            "spans": [
+              {
+                "traceId": "00000000000000000000000000000065",
+                "spanId": "00000000000003f5",
+                "parentSpanId": "00000000000003f4",
+                "name": "payment synthetic operation",
+                "kind": "SPAN_KIND_SERVER",
+                "startTimeUnixNano": "1768471241000000000",
+                "endTimeUnixNano": "1768471241020000000",
+                "status": {
+                  "code": "STATUS_CODE_ERROR",
+                  "message": "synthetic: downstream call failed"
+                }
+              },
+              {
+                "traceId": "00000000000000000000000000000066",
+                "spanId": "00000000000003ff",
+                "parentSpanId": "00000000000003fe",
+                "name": "payment synthetic operation",
+                "kind": "SPAN_KIND_SERVER",
+                "startTimeUnixNano": "1768471242000000000",
+                "endTimeUnixNano": "1768471242020000000",
+                "status": {
+                  "code": "STATUS_CODE_ERROR",
+                  "message": "synthetic: downstream call failed"
+                }
+              },
+              {
+                "traceId": "00000000000000000000000000000067",
+                "spanId": "0000000000000409",
+                "parentSpanId": "0000000000000408",
+                "name": "payment synthetic operation",
+                "kind": "SPAN_KIND_SERVER",
+                "startTimeUnixNano": "1768471243000000000",
+                "endTimeUnixNano": "1768471243020000000",
+                "status": {
+                  "code": "STATUS_CODE_ERROR",
+                  "message": "synthetic: downstream call failed"
+                }
+              },
+              {
+                "traceId": "00000000000000000000000000000384",
+                "spanId": "000000000000232b",
+                "parentSpanId": "000000000000232a",
+                "name": "payment synthetic operation",
+                "kind": "SPAN_KIND_SERVER",
+                "startTimeUnixNano": "1768472040000000000",
+                "endTimeUnixNano": "1768472040020000000",
+                "status": {}
+              },
+              {
+                "traceId": "00000000000000000000000000000385",
+                "spanId": "0000000000002335",
+                "parentSpanId": "0000000000002334",
+                "name": "payment synthetic operation",
+                "kind": "SPAN_KIND_SERVER",
+                "startTimeUnixNano": "1768472041000000000",
+                "endTimeUnixNano": "1768472041020000000",
+                "status": {}
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

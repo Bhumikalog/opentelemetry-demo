@@ -1,0 +1,44 @@
+{
+  "status": "success",
+  "data": {
+    "resultType": "vector",
+    "result": [
+      {
+        "metric": {
+          "service_name": "frontend"
+        },
+        "value": [
+          1768471200.0,
+          "1800"
+        ]
+      },
+      {
+        "metric": {
+          "service_name": "checkout"
+        },
+        "value": [
+          1768471200.0,
+          "600"
+        ]
+      },
+      {
+        "metric": {
+          "service_name": "payment"
+        },
+        "value": [
+          1768471200.0,
+          "580"
+        ]
+      },
+      {
+        "metric": {
+          "service_name": "cart"
+        },
+        "value": [
+          1768471200.0,
+          "900"
+        ]
+      }
+    ]
+  }
+}

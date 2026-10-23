@@ -1,0 +1,23 @@
+{
+  "schema": [
+    {
+      "name": "@timestamp",
+      "type": "timestamp"
+    },
+    {
+      "name": "severity.text",
+      "type": "string"
+    },
+    {
+      "name": "body",
+      "type": "string"
+    },
+    {
+      "name": "traceId",
+      "type": "string"
+    }
+  ],
+  "datarows": [],
+  "total": 0,
+  "size": 0
+}
