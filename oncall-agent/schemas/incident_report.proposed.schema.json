@@ -1,0 +1,1105 @@
+{
+  "$defs": {
+    "ActionResult": {
+      "additionalProperties": false,
+      "properties": {
+        "action_id": {
+          "pattern": "^act-[A-Za-z0-9]+$",
+          "title": "Action Id",
+          "type": "string"
+        },
+        "adapter": {
+          "minLength": 1,
+          "title": "Adapter",
+          "type": "string"
+        },
+        "api_status_code": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Api Status Code"
+        },
+        "error": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Error"
+        },
+        "finished_at": {
+          "format": "date-time",
+          "title": "Finished At",
+          "type": "string"
+        },
+        "rejection_reason": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/RejectionReason"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "response_summary": {
+          "default": "",
+          "maxLength": 500,
+          "title": "Response Summary",
+          "type": "string"
+        },
+        "simulated": {
+          "title": "Simulated",
+          "type": "boolean"
+        },
+        "started_at": {
+          "format": "date-time",
+          "title": "Started At",
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/$defs/ActionStatus"
+        }
+      },
+      "required": [
+        "action_id",
+        "status",
+        "adapter",
+        "simulated",
+        "started_at",
+        "finished_at"
+      ],
+      "title": "ActionResult",
+      "type": "object"
+    },
+    "ActionStatus": {
+      "enum": [
+        "succeeded",
+        "failed",
+        "rejected",
+        "timeout"
+      ],
+      "title": "ActionStatus",
+      "type": "string"
+    },
+    "AgentMeta": {
+      "additionalProperties": false,
+      "properties": {
+        "adapter": {
+          "default": "",
+          "title": "Adapter",
+          "type": "string"
+        },
+        "duration_s": {
+          "default": 0.0,
+          "minimum": 0,
+          "title": "Duration S",
+          "type": "number"
+        },
+        "llm_calls": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Llm Calls",
+          "type": "integer"
+        },
+        "model": {
+          "default": "",
+          "title": "Model",
+          "type": "string"
+        },
+        "provider": {
+          "default": "",
+          "title": "Provider",
+          "type": "string"
+        },
+        "tool_calls": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Tool Calls",
+          "type": "integer"
+        },
+        "version": {
+          "default": "",
+          "title": "Version",
+          "type": "string"
+        }
+      },
+      "title": "AgentMeta",
+      "type": "object"
+    },
+    "AlternativeHypothesis": {
+      "additionalProperties": false,
+      "properties": {
+        "hypothesis": {
+          "minLength": 1,
+          "title": "Hypothesis",
+          "type": "string"
+        },
+        "why_less_likely": {
+          "minLength": 1,
+          "title": "Why Less Likely",
+          "type": "string"
+        }
+      },
+      "required": [
+        "hypothesis",
+        "why_less_likely"
+      ],
+      "title": "AlternativeHypothesis",
+      "type": "object"
+    },
+    "ApprovalDecision": {
+      "enum": [
+        "approved",
+        "denied",
+        "expired"
+      ],
+      "title": "ApprovalDecision",
+      "type": "string"
+    },
+    "ApprovalRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "approval_id": {
+          "pattern": "^apr-[A-Za-z0-9]+$",
+          "title": "Approval Id",
+          "type": "string"
+        },
+        "approver": {
+          "minLength": 1,
+          "title": "Approver",
+          "type": "string"
+        },
+        "channel": {
+          "minLength": 1,
+          "title": "Channel",
+          "type": "string"
+        },
+        "consumed_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Consumed At"
+        },
+        "decided_at": {
+          "format": "date-time",
+          "title": "Decided At",
+          "type": "string"
+        },
+        "decision": {
+          "$ref": "#/$defs/ApprovalDecision"
+        },
+        "expires_at": {
+          "format": "date-time",
+          "title": "Expires At",
+          "type": "string"
+        },
+        "proposal_hash": {
+          "pattern": "^sha256:",
+          "title": "Proposal Hash",
+          "type": "string"
+        },
+        "proposal_id": {
+          "pattern": "^p-[A-Za-z0-9]+$",
+          "title": "Proposal Id",
+          "type": "string"
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Reason"
+        }
+      },
+      "required": [
+        "approval_id",
+        "proposal_id",
+        "proposal_hash",
+        "decision",
+        "approver",
+        "channel",
+        "decided_at",
+        "expires_at"
+      ],
+      "title": "ApprovalRecord",
+      "type": "object"
+    },
+    "Confidence": {
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "title": "Confidence",
+      "type": "string"
+    },
+    "Contradiction": {
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "minLength": 1,
+          "title": "Description",
+          "type": "string"
+        },
+        "evidence_ids": {
+          "items": {
+            "pattern": "^ev-\\d{3,}$",
+            "type": "string"
+          },
+          "title": "Evidence Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "description"
+      ],
+      "title": "Contradiction",
+      "type": "object"
+    },
+    "Diagnosis": {
+      "additionalProperties": false,
+      "properties": {
+        "affected_services": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Affected Services",
+          "type": "array"
+        },
+        "alternative_hypotheses": {
+          "items": {
+            "$ref": "#/$defs/AlternativeHypothesis"
+          },
+          "title": "Alternative Hypotheses",
+          "type": "array"
+        },
+        "assumptions": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Assumptions",
+          "type": "array"
+        },
+        "checker_notes": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Checker Notes",
+          "type": "array"
+        },
+        "confidence": {
+          "$ref": "#/$defs/Confidence"
+        },
+        "contradictions": {
+          "items": {
+            "$ref": "#/$defs/Contradiction"
+          },
+          "title": "Contradictions",
+          "type": "array"
+        },
+        "facts": {
+          "items": {
+            "$ref": "#/$defs/Fact"
+          },
+          "title": "Facts",
+          "type": "array"
+        },
+        "llm_confidence": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Confidence"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "missing_evidence": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Missing Evidence",
+          "type": "array"
+        },
+        "recommended_runbook_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Recommended Runbook Id"
+        },
+        "root_cause_hypothesis": {
+          "default": "",
+          "maxLength": 800,
+          "title": "Root Cause Hypothesis",
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/$defs/DiagnosisStatus"
+        },
+        "suspected_root_cause_service": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Suspected Root Cause Service"
+        }
+      },
+      "required": [
+        "status",
+        "confidence"
+      ],
+      "title": "Diagnosis",
+      "type": "object"
+    },
+    "DiagnosisStatus": {
+      "enum": [
+        "diagnosed",
+        "insufficient_evidence"
+      ],
+      "title": "DiagnosisStatus",
+      "type": "string"
+    },
+    "Evidence": {
+      "additionalProperties": false,
+      "properties": {
+        "collected_at": {
+          "format": "date-time",
+          "title": "Collected At",
+          "type": "string"
+        },
+        "data": {
+          "default": null,
+          "title": "Data"
+        },
+        "id": {
+          "pattern": "^ev-\\d{3,}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "query": {
+          "title": "Query",
+          "type": "string"
+        },
+        "service": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Service"
+        },
+        "source": {
+          "$ref": "#/$defs/EvidenceSource"
+        },
+        "summary": {
+          "maxLength": 500,
+          "title": "Summary",
+          "type": "string"
+        },
+        "time_range": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/TimeRange"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "tool": {
+          "minLength": 1,
+          "title": "Tool",
+          "type": "string"
+        },
+        "truncated": {
+          "default": false,
+          "title": "Truncated",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "source",
+        "tool",
+        "query",
+        "collected_at",
+        "summary"
+      ],
+      "title": "Evidence",
+      "type": "object"
+    },
+    "EvidenceSource": {
+      "enum": [
+        "prometheus",
+        "jaeger",
+        "opensearch",
+        "docker_logs",
+        "docker_inspect",
+        "static_config",
+        "verification"
+      ],
+      "title": "EvidenceSource",
+      "type": "string"
+    },
+    "Fact": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence_ids": {
+          "items": {
+            "pattern": "^ev-\\d{3,}$",
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Evidence Ids",
+          "type": "array"
+        },
+        "statement": {
+          "minLength": 1,
+          "title": "Statement",
+          "type": "string"
+        }
+      },
+      "required": [
+        "statement",
+        "evidence_ids"
+      ],
+      "title": "Fact",
+      "type": "object"
+    },
+    "FinalStatus": {
+      "enum": [
+        "resolved",
+        "not_resolved",
+        "mitigation_unverified",
+        "no_action_taken",
+        "action_failed",
+        "rejected_input",
+        "aborted"
+      ],
+      "title": "FinalStatus",
+      "type": "string"
+    },
+    "IncidentInput": {
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "anyOf": [
+            {
+              "maxLength": 4000,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Description"
+        },
+        "detected_at": {
+          "format": "date-time",
+          "title": "Detected At",
+          "type": "string"
+        },
+        "incident_id": {
+          "maxLength": 64,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9_.-]+$",
+          "title": "Incident Id",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Labels",
+          "type": "object"
+        },
+        "reported_service": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Reported Service"
+        },
+        "severity": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Severity"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "source": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/IncidentSource"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "symptom_type": {
+          "$ref": "#/$defs/SymptomType",
+          "default": "other"
+        },
+        "title": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Title",
+          "type": "string"
+        }
+      },
+      "required": [
+        "incident_id",
+        "title"
+      ],
+      "title": "IncidentInput",
+      "type": "object"
+    },
+    "IncidentSource": {
+      "enum": [
+        "manual",
+        "alert",
+        "harness"
+      ],
+      "title": "IncidentSource",
+      "type": "string"
+    },
+    "RejectionReason": {
+      "enum": [
+        "NO_APPROVAL",
+        "APPROVAL_DENIED",
+        "APPROVAL_EXPIRED",
+        "APPROVAL_ALREADY_USED",
+        "HASH_MISMATCH",
+        "DUPLICATE",
+        "COOLDOWN",
+        "KILL_SWITCH_ACTIVE",
+        "UNSUPPORTED_ACTION",
+        "INVALID_PARAMS",
+        "DRAFT_RUNBOOK"
+      ],
+      "title": "RejectionReason",
+      "type": "string"
+    },
+    "RemediationProposal": {
+      "additionalProperties": false,
+      "properties": {
+        "action_type": {
+          "minLength": 1,
+          "title": "Action Type",
+          "type": "string"
+        },
+        "adapter": {
+          "minLength": 1,
+          "title": "Adapter",
+          "type": "string"
+        },
+        "created_at": {
+          "format": "date-time",
+          "title": "Created At",
+          "type": "string"
+        },
+        "expected_effect": {
+          "title": "Expected Effect",
+          "type": "string"
+        },
+        "incident_id": {
+          "maxLength": 64,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9_.-]+$",
+          "title": "Incident Id",
+          "type": "string"
+        },
+        "params": {
+          "additionalProperties": true,
+          "title": "Params",
+          "type": "object"
+        },
+        "proposal_hash": {
+          "pattern": "^sha256:",
+          "title": "Proposal Hash",
+          "type": "string"
+        },
+        "proposal_id": {
+          "pattern": "^p-[A-Za-z0-9]+$",
+          "title": "Proposal Id",
+          "type": "string"
+        },
+        "rationale": {
+          "title": "Rationale",
+          "type": "string"
+        },
+        "risk": {
+          "$ref": "#/$defs/Risk"
+        },
+        "runbook_id": {
+          "minLength": 1,
+          "title": "Runbook Id",
+          "type": "string"
+        },
+        "simulated": {
+          "title": "Simulated",
+          "type": "boolean"
+        },
+        "success_criteria": {
+          "$ref": "#/$defs/SuccessCriteria"
+        },
+        "target_service": {
+          "minLength": 1,
+          "title": "Target Service",
+          "type": "string"
+        }
+      },
+      "required": [
+        "proposal_id",
+        "incident_id",
+        "runbook_id",
+        "action_type",
+        "target_service",
+        "rationale",
+        "expected_effect",
+        "risk",
+        "adapter",
+        "simulated",
+        "success_criteria",
+        "proposal_hash"
+      ],
+      "title": "RemediationProposal",
+      "type": "object"
+    },
+    "Risk": {
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "title": "Risk",
+      "type": "string"
+    },
+    "ServiceVerification": {
+      "additionalProperties": false,
+      "properties": {
+        "error_rate": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Error Rate",
+          "type": "number"
+        },
+        "evidence_id": {
+          "anyOf": [
+            {
+              "pattern": "^ev-\\d{3,}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Evidence Id"
+        },
+        "passed": {
+          "title": "Passed",
+          "type": "boolean"
+        },
+        "requests": {
+          "minimum": 0,
+          "title": "Requests",
+          "type": "integer"
+        },
+        "service": {
+          "minLength": 1,
+          "title": "Service",
+          "type": "string"
+        }
+      },
+      "required": [
+        "service",
+        "requests",
+        "error_rate",
+        "passed"
+      ],
+      "title": "ServiceVerification",
+      "type": "object"
+    },
+    "Severity": {
+      "enum": [
+        "SEV1",
+        "SEV2",
+        "SEV3",
+        "SEV4"
+      ],
+      "title": "Severity",
+      "type": "string"
+    },
+    "SuccessCriteria": {
+      "additionalProperties": false,
+      "properties": {
+        "max_error_rate": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Max Error Rate",
+          "type": "number"
+        },
+        "min_requests": {
+          "minimum": 1,
+          "title": "Min Requests",
+          "type": "integer"
+        },
+        "services": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Services",
+          "type": "array"
+        },
+        "wait_seconds": {
+          "minimum": 0,
+          "title": "Wait Seconds",
+          "type": "integer"
+        },
+        "window_seconds": {
+          "minimum": 1,
+          "title": "Window Seconds",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "services",
+        "max_error_rate",
+        "min_requests",
+        "wait_seconds",
+        "window_seconds"
+      ],
+      "title": "SuccessCriteria",
+      "type": "object"
+    },
+    "SymptomType": {
+      "enum": [
+        "errors",
+        "latency",
+        "unavailable",
+        "resource",
+        "other"
+      ],
+      "title": "SymptomType",
+      "type": "string"
+    },
+    "TimeRange": {
+      "additionalProperties": false,
+      "properties": {
+        "end": {
+          "format": "date-time",
+          "title": "End",
+          "type": "string"
+        },
+        "start": {
+          "format": "date-time",
+          "title": "Start",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "title": "TimeRange",
+      "type": "object"
+    },
+    "TimelineEntry": {
+      "additionalProperties": false,
+      "properties": {
+        "at": {
+          "format": "date-time",
+          "title": "At",
+          "type": "string"
+        },
+        "detail": {
+          "default": "",
+          "title": "Detail",
+          "type": "string"
+        },
+        "state": {
+          "minLength": 1,
+          "title": "State",
+          "type": "string"
+        }
+      },
+      "required": [
+        "at",
+        "state"
+      ],
+      "title": "TimelineEntry",
+      "type": "object"
+    },
+    "VerificationCriteria": {
+      "additionalProperties": false,
+      "properties": {
+        "max_error_rate": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Max Error Rate",
+          "type": "number"
+        },
+        "min_requests": {
+          "minimum": 1,
+          "title": "Min Requests",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "max_error_rate",
+        "min_requests"
+      ],
+      "title": "VerificationCriteria",
+      "type": "object"
+    },
+    "VerificationResult": {
+      "additionalProperties": false,
+      "properties": {
+        "baseline_before": {
+          "additionalProperties": {
+            "type": "number"
+          },
+          "title": "Baseline Before",
+          "type": "object"
+        },
+        "checked_at": {
+          "format": "date-time",
+          "title": "Checked At",
+          "type": "string"
+        },
+        "criteria": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/VerificationCriteria"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "notes": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Notes",
+          "type": "array"
+        },
+        "per_service": {
+          "items": {
+            "$ref": "#/$defs/ServiceVerification"
+          },
+          "title": "Per Service",
+          "type": "array"
+        },
+        "status": {
+          "$ref": "#/$defs/VerificationStatus"
+        },
+        "window": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/TimeRange"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "status",
+        "checked_at"
+      ],
+      "title": "VerificationResult",
+      "type": "object"
+    },
+    "VerificationStatus": {
+      "enum": [
+        "recovered",
+        "not_recovered",
+        "unverified"
+      ],
+      "title": "VerificationStatus",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "action": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ActionResult"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "agent_meta": {
+      "$ref": "#/$defs/AgentMeta"
+    },
+    "approval": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ApprovalRecord"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "diagnosis": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Diagnosis"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "evidence": {
+      "items": {
+        "$ref": "#/$defs/Evidence"
+      },
+      "title": "Evidence",
+      "type": "array"
+    },
+    "final_status": {
+      "$ref": "#/$defs/FinalStatus"
+    },
+    "generated_at": {
+      "format": "date-time",
+      "title": "Generated At",
+      "type": "string"
+    },
+    "incident": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/IncidentInput"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "limitations": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Limitations",
+      "type": "array"
+    },
+    "prevention": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Prevention",
+      "type": "array"
+    },
+    "proposal": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/RemediationProposal"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "report_schema": {
+      "default": "oncall-agent/proposed/v1",
+      "title": "Report Schema",
+      "type": "string"
+    },
+    "summary": {
+      "title": "Summary",
+      "type": "string"
+    },
+    "timeline": {
+      "items": {
+        "$ref": "#/$defs/TimelineEntry"
+      },
+      "title": "Timeline",
+      "type": "array"
+    },
+    "verification": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/VerificationResult"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "required": [
+    "final_status",
+    "summary"
+  ],
+  "title": "PROPOSED by team (not official)",
+  "type": "object"
+}

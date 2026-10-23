@@ -1,0 +1,9 @@
+httpx==0.28.1
+pydantic==2.14.1
+PyYAML==6.0.3
+python-dotenv==1.2.2
+pytest==9.1.1
+jsonschema==4.26.0
+# One LLM SDK, chosen once the organizers confirm the provider (P1 pins it):
+# anthropic
+# openai

@@ -1,0 +1,119 @@
+{
+  "$defs": {
+    "IncidentSource": {
+      "enum": [
+        "manual",
+        "alert",
+        "harness"
+      ],
+      "title": "IncidentSource",
+      "type": "string"
+    },
+    "Severity": {
+      "enum": [
+        "SEV1",
+        "SEV2",
+        "SEV3",
+        "SEV4"
+      ],
+      "title": "Severity",
+      "type": "string"
+    },
+    "SymptomType": {
+      "enum": [
+        "errors",
+        "latency",
+        "unavailable",
+        "resource",
+        "other"
+      ],
+      "title": "SymptomType",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "description": {
+      "anyOf": [
+        {
+          "maxLength": 4000,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Description"
+    },
+    "detected_at": {
+      "format": "date-time",
+      "title": "Detected At",
+      "type": "string"
+    },
+    "incident_id": {
+      "maxLength": 64,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9_.-]+$",
+      "title": "Incident Id",
+      "type": "string"
+    },
+    "labels": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "Labels",
+      "type": "object"
+    },
+    "reported_service": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Reported Service"
+    },
+    "severity": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Severity"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "source": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/IncidentSource"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "symptom_type": {
+      "$ref": "#/$defs/SymptomType",
+      "default": "other"
+    },
+    "title": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Title",
+      "type": "string"
+    }
+  },
+  "required": [
+    "incident_id",
+    "title"
+  ],
+  "title": "IncidentInput",
+  "type": "object"
+}

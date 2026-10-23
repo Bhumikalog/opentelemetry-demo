@@ -1,0 +1,50 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "action_id": {
+      "pattern": "^act-[A-Za-z0-9]+$",
+      "title": "Action Id",
+      "type": "string"
+    },
+    "action_type": {
+      "minLength": 1,
+      "title": "Action Type",
+      "type": "string"
+    },
+    "approval_id": {
+      "pattern": "^apr-[A-Za-z0-9]+$",
+      "title": "Approval Id",
+      "type": "string"
+    },
+    "idempotency_key": {
+      "minLength": 1,
+      "title": "Idempotency Key",
+      "type": "string"
+    },
+    "params": {
+      "additionalProperties": true,
+      "title": "Params",
+      "type": "object"
+    },
+    "proposal_id": {
+      "pattern": "^p-[A-Za-z0-9]+$",
+      "title": "Proposal Id",
+      "type": "string"
+    },
+    "target_service": {
+      "minLength": 1,
+      "title": "Target Service",
+      "type": "string"
+    }
+  },
+  "required": [
+    "action_id",
+    "idempotency_key",
+    "proposal_id",
+    "approval_id",
+    "action_type",
+    "target_service"
+  ],
+  "title": "ActionRequest",
+  "type": "object"
+}

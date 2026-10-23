@@ -1,0 +1,110 @@
+{
+  "$defs": {
+    "EvidenceSource": {
+      "enum": [
+        "prometheus",
+        "jaeger",
+        "opensearch",
+        "docker_logs",
+        "docker_inspect",
+        "static_config",
+        "verification"
+      ],
+      "title": "EvidenceSource",
+      "type": "string"
+    },
+    "TimeRange": {
+      "additionalProperties": false,
+      "properties": {
+        "end": {
+          "format": "date-time",
+          "title": "End",
+          "type": "string"
+        },
+        "start": {
+          "format": "date-time",
+          "title": "Start",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "title": "TimeRange",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "collected_at": {
+      "format": "date-time",
+      "title": "Collected At",
+      "type": "string"
+    },
+    "data": {
+      "default": null,
+      "title": "Data"
+    },
+    "id": {
+      "pattern": "^ev-\\d{3,}$",
+      "title": "Id",
+      "type": "string"
+    },
+    "query": {
+      "title": "Query",
+      "type": "string"
+    },
+    "service": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Service"
+    },
+    "source": {
+      "$ref": "#/$defs/EvidenceSource"
+    },
+    "summary": {
+      "maxLength": 500,
+      "title": "Summary",
+      "type": "string"
+    },
+    "time_range": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/TimeRange"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "tool": {
+      "minLength": 1,
+      "title": "Tool",
+      "type": "string"
+    },
+    "truncated": {
+      "default": false,
+      "title": "Truncated",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "id",
+    "source",
+    "tool",
+    "query",
+    "collected_at",
+    "summary"
+  ],
+  "title": "Evidence",
+  "type": "object"
+}

@@ -1,0 +1,194 @@
+{
+  "$defs": {
+    "Evidence": {
+      "additionalProperties": false,
+      "properties": {
+        "collected_at": {
+          "format": "date-time",
+          "title": "Collected At",
+          "type": "string"
+        },
+        "data": {
+          "default": null,
+          "title": "Data"
+        },
+        "id": {
+          "pattern": "^ev-\\d{3,}$",
+          "title": "Id",
+          "type": "string"
+        },
+        "query": {
+          "title": "Query",
+          "type": "string"
+        },
+        "service": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Service"
+        },
+        "source": {
+          "$ref": "#/$defs/EvidenceSource"
+        },
+        "summary": {
+          "maxLength": 500,
+          "title": "Summary",
+          "type": "string"
+        },
+        "time_range": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/TimeRange"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "tool": {
+          "minLength": 1,
+          "title": "Tool",
+          "type": "string"
+        },
+        "truncated": {
+          "default": false,
+          "title": "Truncated",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "source",
+        "tool",
+        "query",
+        "collected_at",
+        "summary"
+      ],
+      "title": "Evidence",
+      "type": "object"
+    },
+    "EvidenceSource": {
+      "enum": [
+        "prometheus",
+        "jaeger",
+        "opensearch",
+        "docker_logs",
+        "docker_inspect",
+        "static_config",
+        "verification"
+      ],
+      "title": "EvidenceSource",
+      "type": "string"
+    },
+    "TimeRange": {
+      "additionalProperties": false,
+      "properties": {
+        "end": {
+          "format": "date-time",
+          "title": "End",
+          "type": "string"
+        },
+        "start": {
+          "format": "date-time",
+          "title": "Start",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "title": "TimeRange",
+      "type": "object"
+    },
+    "ToolError": {
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "$ref": "#/$defs/ToolErrorCode"
+        },
+        "message": {
+          "title": "Message",
+          "type": "string"
+        },
+        "retryable": {
+          "title": "Retryable",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "code",
+        "message",
+        "retryable"
+      ],
+      "title": "ToolError",
+      "type": "object"
+    },
+    "ToolErrorCode": {
+      "enum": [
+        "TIMEOUT",
+        "UNAVAILABLE",
+        "BAD_ARGS",
+        "NOT_FOUND",
+        "BACKEND_ERROR",
+        "BUDGET_EXCEEDED"
+      ],
+      "title": "ToolErrorCode",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "cached": {
+      "default": false,
+      "title": "Cached",
+      "type": "boolean"
+    },
+    "duration_ms": {
+      "default": 0,
+      "minimum": 0,
+      "title": "Duration Ms",
+      "type": "integer"
+    },
+    "error": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ToolError"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "evidence": {
+      "items": {
+        "$ref": "#/$defs/Evidence"
+      },
+      "title": "Evidence",
+      "type": "array"
+    },
+    "ok": {
+      "title": "Ok",
+      "type": "boolean"
+    },
+    "tool": {
+      "minLength": 1,
+      "title": "Tool",
+      "type": "string"
+    }
+  },
+  "required": [
+    "ok",
+    "tool"
+  ],
+  "title": "ToolResult",
+  "type": "object"
+}

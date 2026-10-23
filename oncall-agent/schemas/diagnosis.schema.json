@@ -1,0 +1,195 @@
+{
+  "$defs": {
+    "AlternativeHypothesis": {
+      "additionalProperties": false,
+      "properties": {
+        "hypothesis": {
+          "minLength": 1,
+          "title": "Hypothesis",
+          "type": "string"
+        },
+        "why_less_likely": {
+          "minLength": 1,
+          "title": "Why Less Likely",
+          "type": "string"
+        }
+      },
+      "required": [
+        "hypothesis",
+        "why_less_likely"
+      ],
+      "title": "AlternativeHypothesis",
+      "type": "object"
+    },
+    "Confidence": {
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "title": "Confidence",
+      "type": "string"
+    },
+    "Contradiction": {
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "minLength": 1,
+          "title": "Description",
+          "type": "string"
+        },
+        "evidence_ids": {
+          "items": {
+            "pattern": "^ev-\\d{3,}$",
+            "type": "string"
+          },
+          "title": "Evidence Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "description"
+      ],
+      "title": "Contradiction",
+      "type": "object"
+    },
+    "DiagnosisStatus": {
+      "enum": [
+        "diagnosed",
+        "insufficient_evidence"
+      ],
+      "title": "DiagnosisStatus",
+      "type": "string"
+    },
+    "Fact": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence_ids": {
+          "items": {
+            "pattern": "^ev-\\d{3,}$",
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Evidence Ids",
+          "type": "array"
+        },
+        "statement": {
+          "minLength": 1,
+          "title": "Statement",
+          "type": "string"
+        }
+      },
+      "required": [
+        "statement",
+        "evidence_ids"
+      ],
+      "title": "Fact",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "affected_services": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Affected Services",
+      "type": "array"
+    },
+    "alternative_hypotheses": {
+      "items": {
+        "$ref": "#/$defs/AlternativeHypothesis"
+      },
+      "title": "Alternative Hypotheses",
+      "type": "array"
+    },
+    "assumptions": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Assumptions",
+      "type": "array"
+    },
+    "checker_notes": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Checker Notes",
+      "type": "array"
+    },
+    "confidence": {
+      "$ref": "#/$defs/Confidence"
+    },
+    "contradictions": {
+      "items": {
+        "$ref": "#/$defs/Contradiction"
+      },
+      "title": "Contradictions",
+      "type": "array"
+    },
+    "facts": {
+      "items": {
+        "$ref": "#/$defs/Fact"
+      },
+      "title": "Facts",
+      "type": "array"
+    },
+    "llm_confidence": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Confidence"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "missing_evidence": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Missing Evidence",
+      "type": "array"
+    },
+    "recommended_runbook_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Recommended Runbook Id"
+    },
+    "root_cause_hypothesis": {
+      "default": "",
+      "maxLength": 800,
+      "title": "Root Cause Hypothesis",
+      "type": "string"
+    },
+    "status": {
+      "$ref": "#/$defs/DiagnosisStatus"
+    },
+    "suspected_root_cause_service": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Suspected Root Cause Service"
+    }
+  },
+  "required": [
+    "status",
+    "confidence"
+  ],
+  "title": "Diagnosis",
+  "type": "object"
+}

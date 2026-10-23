@@ -1,0 +1,162 @@
+{
+  "$defs": {
+    "ServiceVerification": {
+      "additionalProperties": false,
+      "properties": {
+        "error_rate": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Error Rate",
+          "type": "number"
+        },
+        "evidence_id": {
+          "anyOf": [
+            {
+              "pattern": "^ev-\\d{3,}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Evidence Id"
+        },
+        "passed": {
+          "title": "Passed",
+          "type": "boolean"
+        },
+        "requests": {
+          "minimum": 0,
+          "title": "Requests",
+          "type": "integer"
+        },
+        "service": {
+          "minLength": 1,
+          "title": "Service",
+          "type": "string"
+        }
+      },
+      "required": [
+        "service",
+        "requests",
+        "error_rate",
+        "passed"
+      ],
+      "title": "ServiceVerification",
+      "type": "object"
+    },
+    "TimeRange": {
+      "additionalProperties": false,
+      "properties": {
+        "end": {
+          "format": "date-time",
+          "title": "End",
+          "type": "string"
+        },
+        "start": {
+          "format": "date-time",
+          "title": "Start",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "title": "TimeRange",
+      "type": "object"
+    },
+    "VerificationCriteria": {
+      "additionalProperties": false,
+      "properties": {
+        "max_error_rate": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Max Error Rate",
+          "type": "number"
+        },
+        "min_requests": {
+          "minimum": 1,
+          "title": "Min Requests",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "max_error_rate",
+        "min_requests"
+      ],
+      "title": "VerificationCriteria",
+      "type": "object"
+    },
+    "VerificationStatus": {
+      "enum": [
+        "recovered",
+        "not_recovered",
+        "unverified"
+      ],
+      "title": "VerificationStatus",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "baseline_before": {
+      "additionalProperties": {
+        "type": "number"
+      },
+      "title": "Baseline Before",
+      "type": "object"
+    },
+    "checked_at": {
+      "format": "date-time",
+      "title": "Checked At",
+      "type": "string"
+    },
+    "criteria": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/VerificationCriteria"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "notes": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Notes",
+      "type": "array"
+    },
+    "per_service": {
+      "items": {
+        "$ref": "#/$defs/ServiceVerification"
+      },
+      "title": "Per Service",
+      "type": "array"
+    },
+    "status": {
+      "$ref": "#/$defs/VerificationStatus"
+    },
+    "window": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/TimeRange"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "required": [
+    "status",
+    "checked_at"
+  ],
+  "title": "VerificationResult",
+  "type": "object"
+}

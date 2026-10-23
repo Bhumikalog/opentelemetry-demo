@@ -1,0 +1,140 @@
+{
+  "$defs": {
+    "Risk": {
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "title": "Risk",
+      "type": "string"
+    },
+    "SuccessCriteria": {
+      "additionalProperties": false,
+      "properties": {
+        "max_error_rate": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Max Error Rate",
+          "type": "number"
+        },
+        "min_requests": {
+          "minimum": 1,
+          "title": "Min Requests",
+          "type": "integer"
+        },
+        "services": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Services",
+          "type": "array"
+        },
+        "wait_seconds": {
+          "minimum": 0,
+          "title": "Wait Seconds",
+          "type": "integer"
+        },
+        "window_seconds": {
+          "minimum": 1,
+          "title": "Window Seconds",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "services",
+        "max_error_rate",
+        "min_requests",
+        "wait_seconds",
+        "window_seconds"
+      ],
+      "title": "SuccessCriteria",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "action_type": {
+      "minLength": 1,
+      "title": "Action Type",
+      "type": "string"
+    },
+    "adapter": {
+      "minLength": 1,
+      "title": "Adapter",
+      "type": "string"
+    },
+    "created_at": {
+      "format": "date-time",
+      "title": "Created At",
+      "type": "string"
+    },
+    "expected_effect": {
+      "title": "Expected Effect",
+      "type": "string"
+    },
+    "incident_id": {
+      "maxLength": 64,
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9_.-]+$",
+      "title": "Incident Id",
+      "type": "string"
+    },
+    "params": {
+      "additionalProperties": true,
+      "title": "Params",
+      "type": "object"
+    },
+    "proposal_hash": {
+      "pattern": "^sha256:",
+      "title": "Proposal Hash",
+      "type": "string"
+    },
+    "proposal_id": {
+      "pattern": "^p-[A-Za-z0-9]+$",
+      "title": "Proposal Id",
+      "type": "string"
+    },
+    "rationale": {
+      "title": "Rationale",
+      "type": "string"
+    },
+    "risk": {
+      "$ref": "#/$defs/Risk"
+    },
+    "runbook_id": {
+      "minLength": 1,
+      "title": "Runbook Id",
+      "type": "string"
+    },
+    "simulated": {
+      "title": "Simulated",
+      "type": "boolean"
+    },
+    "success_criteria": {
+      "$ref": "#/$defs/SuccessCriteria"
+    },
+    "target_service": {
+      "minLength": 1,
+      "title": "Target Service",
+      "type": "string"
+    }
+  },
+  "required": [
+    "proposal_id",
+    "incident_id",
+    "runbook_id",
+    "action_type",
+    "target_service",
+    "rationale",
+    "expected_effect",
+    "risk",
+    "adapter",
+    "simulated",
+    "success_criteria",
+    "proposal_hash"
+  ],
+  "title": "RemediationProposal",
+  "type": "object"
+}

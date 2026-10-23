@@ -1,0 +1,91 @@
+{
+  "$defs": {
+    "ApprovalDecision": {
+      "enum": [
+        "approved",
+        "denied",
+        "expired"
+      ],
+      "title": "ApprovalDecision",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "approval_id": {
+      "pattern": "^apr-[A-Za-z0-9]+$",
+      "title": "Approval Id",
+      "type": "string"
+    },
+    "approver": {
+      "minLength": 1,
+      "title": "Approver",
+      "type": "string"
+    },
+    "channel": {
+      "minLength": 1,
+      "title": "Channel",
+      "type": "string"
+    },
+    "consumed_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Consumed At"
+    },
+    "decided_at": {
+      "format": "date-time",
+      "title": "Decided At",
+      "type": "string"
+    },
+    "decision": {
+      "$ref": "#/$defs/ApprovalDecision"
+    },
+    "expires_at": {
+      "format": "date-time",
+      "title": "Expires At",
+      "type": "string"
+    },
+    "proposal_hash": {
+      "pattern": "^sha256:",
+      "title": "Proposal Hash",
+      "type": "string"
+    },
+    "proposal_id": {
+      "pattern": "^p-[A-Za-z0-9]+$",
+      "title": "Proposal Id",
+      "type": "string"
+    },
+    "reason": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Reason"
+    }
+  },
+  "required": [
+    "approval_id",
+    "proposal_id",
+    "proposal_hash",
+    "decision",
+    "approver",
+    "channel",
+    "decided_at",
+    "expires_at"
+  ],
+  "title": "ApprovalRecord",
+  "type": "object"
+}

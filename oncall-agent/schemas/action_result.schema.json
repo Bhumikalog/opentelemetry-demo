@@ -1,0 +1,112 @@
+{
+  "$defs": {
+    "ActionStatus": {
+      "enum": [
+        "succeeded",
+        "failed",
+        "rejected",
+        "timeout"
+      ],
+      "title": "ActionStatus",
+      "type": "string"
+    },
+    "RejectionReason": {
+      "enum": [
+        "NO_APPROVAL",
+        "APPROVAL_DENIED",
+        "APPROVAL_EXPIRED",
+        "APPROVAL_ALREADY_USED",
+        "HASH_MISMATCH",
+        "DUPLICATE",
+        "COOLDOWN",
+        "KILL_SWITCH_ACTIVE",
+        "UNSUPPORTED_ACTION",
+        "INVALID_PARAMS",
+        "DRAFT_RUNBOOK"
+      ],
+      "title": "RejectionReason",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "action_id": {
+      "pattern": "^act-[A-Za-z0-9]+$",
+      "title": "Action Id",
+      "type": "string"
+    },
+    "adapter": {
+      "minLength": 1,
+      "title": "Adapter",
+      "type": "string"
+    },
+    "api_status_code": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Api Status Code"
+    },
+    "error": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Error"
+    },
+    "finished_at": {
+      "format": "date-time",
+      "title": "Finished At",
+      "type": "string"
+    },
+    "rejection_reason": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/RejectionReason"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "response_summary": {
+      "default": "",
+      "maxLength": 500,
+      "title": "Response Summary",
+      "type": "string"
+    },
+    "simulated": {
+      "title": "Simulated",
+      "type": "boolean"
+    },
+    "started_at": {
+      "format": "date-time",
+      "title": "Started At",
+      "type": "string"
+    },
+    "status": {
+      "$ref": "#/$defs/ActionStatus"
+    }
+  },
+  "required": [
+    "action_id",
+    "status",
+    "adapter",
+    "simulated",
+    "started_at",
+    "finished_at"
+  ],
+  "title": "ActionResult",
+  "type": "object"
+}

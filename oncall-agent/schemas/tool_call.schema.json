@@ -1,0 +1,20 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "args": {
+      "additionalProperties": true,
+      "title": "Args",
+      "type": "object"
+    },
+    "name": {
+      "minLength": 1,
+      "title": "Name",
+      "type": "string"
+    }
+  },
+  "required": [
+    "name"
+  ],
+  "title": "ToolCall",
+  "type": "object"
+}
